@@ -145,8 +145,18 @@ bool actionHandler(string action, vector<Book> books) {
 		//Реализация третьей задачи лабораторной работы !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		return dialogSortTemplate("Введите год после которого книга должна была выйти: ", "year", books, "К сожалению книг после заданного года выпуска нет в списке", "higher than");
 	}
-
 	case 4: {
+		int answer;
+		std::cout << "1. Полный\n2. Неполный" << std::endl;
+		std::cout << "Выберите способ вывода: ";
+		std::cin >> answer;
+		std::string answ = answer == 1 ? "full" : "else";
+		for (int i = 0; i < books.size(); i++) {
+			books[i].show(answ);
+		}
+		return exit();
+	}
+	case 5: {
 		return true;
 	}
 	default:
@@ -193,7 +203,8 @@ int main() {
 		std::cout << "1. Получить список книг заданного автора" << std::endl;
 		std::cout << "2. Получить список книг, выпущенных заданным издательством" << std::endl;
 		std::cout << "3. Получить список книг выпущенных после заданного года" << std::endl;
-		std::cout << "4. Выйти из программы" << std::endl;
+		std::cout << "4. Вывести полный список книг" << std::endl;
+		std::cout << "5. Выйти из программы" << std::endl;
 		std::cout << "Выберите действие: ";
 		std::cin >> action;
 		exit = actionHandler(action, books);
